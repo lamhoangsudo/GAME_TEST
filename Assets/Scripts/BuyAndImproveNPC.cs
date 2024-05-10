@@ -37,6 +37,7 @@ public class BuyAndImproveNPC : MonoBehaviour
     [SerializeField] private TextMeshProUGUI costWorkDeskSpeedText;
     [SerializeField] private Canvas canvas;
 
+    [SerializeField] private Button exitShop;
     public event EventHandler<int> OnImprovePrinterSpeedCount;
     public event EventHandler<int> OnImproveWorkDeskSpeed;
     public bool isBuy;
@@ -69,6 +70,15 @@ public class BuyAndImproveNPC : MonoBehaviour
 
         improveWorkDeskSpeedButton.onClick.AddListener(ImproveWorkDeskSpeed);
         costWorkDeskSpeedText.text = "$ " + costWorkDeskSpeed.ToString();
+
+        exitShop.onClick.AddListener(() =>
+        {
+            if (isBuy)
+            {
+                isBuy = false;
+                canvas.gameObject.SetActive(false);
+            }
+        });
     }
     private void Update()
     {
